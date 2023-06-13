@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_main"
+    app:startDestination="@id/todoListFragment">
+
+    <fragment
+        android:id="@+id/createTodoFragment"
+        android:name="com.example.a160420046_todoapp.view.CreateTodoFragment"
+        android:label="Create To Do"
+        tools:layout="@layout/fragment_create_todo" />
+    <fragment
+        android:id="@+id/todoListFragment"
+        android:name="com.example.a160420046_todoapp.view.TodoListFragment"
+        android:label="To Do List"
+        tools:layout="@layout/fragment_todo_list">
+        <action
+            android:id="@+id/actionCreateTodo"
+            app:destination="@id/createTodoFragment" />
+        <action
+            android:id="@+id/actionEditTodoFragment"
+            app:destination="@id/editTodoFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/editTodoFragment2"
+        android:name="com.example.a160420046_todoapp.view.EditTodoFragment"
+        android:label="Edit To Do">
+        <argument
+            android:name="uuid"
+            app:argType="integer" />
+    </fragment>
+</navigation>

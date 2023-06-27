@@ -12,9 +12,15 @@ import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.workDataOf
 import com.example.a160420046_todoapp.R
 import com.example.a160420046_todoapp.model.Todo
+import com.example.a160420046_todoapp.util.NotificationHelper
+import com.example.a160420046_todoapp.util.ToDoWorker
 import com.example.a160420046_todoapp.viewmodel.DetailTodoViewModel
+import java.util.concurrent.TimeUnit
 
 class CreateTodoFragment : Fragment() {
     private lateinit var viewModel: DetailTodoViewModel
@@ -37,6 +43,18 @@ class CreateTodoFragment : Fragment() {
 
 
         btnAdd.setOnClickListener {
+//            NotificationHelper(view.context)
+//                .createNotification("Todo Created", "A new todo has been created! Stay focus!")
+
+            val myWorkRequest = OneTimeWorkRequestBuilder<ToDoWorker>()
+                .setInitialDelay(10, TimeUnit.SECONDS)
+                .setInputData(workDataOf(
+                    "title" to "ToDo Created",
+                    "message" to  "A new todo has been created! Stay focus!"
+                ))
+                .build()
+            WorkManager.getInstance(requireContext()).enqueue(myWorkRequest)
+
             val txtTitle = view.findViewById<EditText>(R.id.txtTitle)
             val txtNotes = view.findViewById<EditText>(R.id.txtNotes)
             var radio = view.findViewById<RadioGroup>(R.id.radioGroupPriority)

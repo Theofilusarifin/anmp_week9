@@ -9,6 +9,10 @@ android {
     namespace 'com.example.a160420046_todoapp'
     compileSdk 33
 
+    dataBinding{
+        enabled true
+    }
+
     defaultConfig {
         applicationId "com.example.a160420046_todoapp"
         minSdk 24

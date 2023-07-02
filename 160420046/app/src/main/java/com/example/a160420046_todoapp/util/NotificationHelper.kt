@@ -72,6 +72,7 @@ class NotificationHelper (val context: Context) {
             // for ActivityCompat#requestPermissions for more details.
             return
         }
+
         NotificationManagerCompat.from(context).notify(NOTIFICATION_ID, notification)
     }
 }

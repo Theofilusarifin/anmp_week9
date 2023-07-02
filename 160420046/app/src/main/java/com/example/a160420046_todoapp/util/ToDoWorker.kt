@@ -8,7 +8,7 @@ class ToDoWorker (val context: Context, val params: WorkerParameters) : Worker(c
     override fun doWork() : Result{
         NotificationHelper(context)
             .createNotification(inputData.getString("title").toString(),
-                                inputData.getString("message").toString())
+                inputData.getString("message").toString())
         return Result.success()
     }
 }
